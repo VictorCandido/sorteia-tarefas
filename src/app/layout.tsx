@@ -3,7 +3,7 @@ import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Task Roulette",
+  title: "Sorteia Tarefa",
   description: "Sorteie suas tarefas e deixe o destino decidir o que fazer.",
   viewport: "width=device-width, initial-scale=1, maximum-scale=1",
 };

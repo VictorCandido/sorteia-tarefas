@@ -25,7 +25,7 @@ export default function Header() {
             <RiShuffleFill className="text-accent text-lg" />
           </motion.div>
           <span className="font-display font-bold text-lg tracking-tight">
-            task<span className="text-accent">roulette</span>
+            sorteia<span className="text-accent">tarefa</span>
           </span>
         </Link>
 

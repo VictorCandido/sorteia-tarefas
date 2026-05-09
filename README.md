@@ -1,4 +1,4 @@
-# Task Roulette 🎰
+# Sorteia Tarefa 🎰
 
 Sorteie suas tarefas e deixe o destino decidir o que fazer.
 
