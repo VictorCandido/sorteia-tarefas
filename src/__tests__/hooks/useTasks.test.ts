@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { renderHook, act, waitFor } from "@testing-library/react";
 import { useTasks } from "@/hooks/useTasks";
+import { Task } from "@/lib/types";
 
 const pendingTask = {
   id: "task-1",
@@ -81,7 +82,7 @@ describe("useTasks — addTask", () => {
     const { result } = renderHook(() => useTasks());
     await waitFor(() => expect(result.current.loading).toBe(false));
 
-    let added: typeof pendingTask | null = null;
+    let added: Task | null = null;
     await act(async () => {
       added = await result.current.addTask("Lavar a louça");
     });
@@ -99,7 +100,7 @@ describe("useTasks — addTask", () => {
     const { result } = renderHook(() => useTasks());
     await waitFor(() => expect(result.current.loading).toBe(false));
 
-    let added: typeof pendingTask | null = null;
+    let added: Task | null = null;
     await act(async () => {
       added = await result.current.addTask("Título inválido");
     });
@@ -117,7 +118,7 @@ describe("useTasks — addTask", () => {
     const { result } = renderHook(() => useTasks());
     await waitFor(() => expect(result.current.loading).toBe(false));
 
-    let added: typeof pendingTask | null = null;
+    let added: Task | null = null;
     await act(async () => {
       added = await result.current.addTask("Tarefa");
     });
@@ -228,7 +229,7 @@ describe("useTasks — drawTask", () => {
     const { result } = renderHook(() => useTasks());
     await waitFor(() => expect(result.current.loading).toBe(false));
 
-    let task: typeof drawn | null = null;
+    let task: Task | null = null;
     await act(async () => {
       task = await result.current.drawTask();
     });

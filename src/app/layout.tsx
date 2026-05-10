@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Toaster } from "react-hot-toast";
+import { version } from "../../package.json";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -25,6 +26,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
         {children}
+        <footer className="py-4 text-center">
+          <span className="text-xs text-surface-600 font-display tracking-widest">
+            v{version}
+          </span>
+        </footer>
       </body>
     </html>
   );
