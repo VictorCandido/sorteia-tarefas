@@ -1,15 +1,16 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { RiCheckDoubleLine, RiCloseLine, RiMagicLine } from "react-icons/ri";
+import { RiCheckDoubleLine, RiCloseLine, RiMagicLine, RiArrowGoBackLine } from "react-icons/ri";
 import { Task } from "@/lib/types";
 
 interface DrawnModalProps {
   task: Task | null;
   onClose: () => void;
+  onCancel: () => void;
 }
 
-export default function DrawnModal({ task, onClose }: DrawnModalProps) {
+export default function DrawnModal({ task, onClose, onCancel }: DrawnModalProps) {
   return (
     <AnimatePresence>
       {task && (
@@ -104,20 +105,35 @@ export default function DrawnModal({ task, onClose }: DrawnModalProps) {
                 {task.title}
               </motion.h2>
 
-              {/* CTA button */}
-              <motion.button
+              {/* Buttons */}
+              <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                onClick={onClose}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-accent hover:bg-accent-dark
-                           text-white font-semibold rounded-xl transition-colors text-sm"
+                className="flex flex-col gap-3"
               >
-                <RiCheckDoubleLine />
-                Entendido, bora!
-              </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  onClick={onClose}
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-accent hover:bg-accent-dark
+                             text-white font-semibold rounded-xl transition-colors text-sm"
+                >
+                  <RiCheckDoubleLine />
+                  Entendido, bora!
+                </motion.button>
+
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={onCancel}
+                  className="inline-flex items-center justify-center gap-2 px-6 py-2.5 text-surface-400
+                             hover:text-surface-200 hover:bg-surface-800 rounded-xl transition-colors text-sm"
+                >
+                  <RiArrowGoBackLine />
+                  Não consigo agora
+                </motion.button>
+              </motion.div>
             </div>
           </motion.div>
         </motion.div>

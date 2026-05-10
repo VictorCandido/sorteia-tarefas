@@ -1,6 +1,20 @@
 import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
+export async function PATCH(_request: NextRequest, { params }: { params: { id: string } }) {
+  const { id } = params;
+
+  try {
+    const task = await prisma.task.update({
+      where: { id },
+      data: { status: "PENDING", drawnAt: null },
+    });
+    return NextResponse.json(task);
+  } catch {
+    return NextResponse.json({ error: "Task not found" }, { status: 404 });
+  }
+}
+
 export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
   const { id } = params;
   const body = await request.json();

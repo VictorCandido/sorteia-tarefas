@@ -14,7 +14,7 @@ import EmptyState from "@/components/EmptyState";
 import { RiInboxLine, RiLoader4Line } from "react-icons/ri";
 
 export default function HomePage() {
-  const { pendingTasks, loading, addTask, updateTask, deleteTask, drawTask } = useTasks();
+  const { pendingTasks, loading, addTask, updateTask, deleteTask, drawTask, undrawTask } = useTasks();
   const [spinning, setSpinning] = useState(false);
   const [drawnTask, setDrawnTask] = useState<Task | null>(null);
 
@@ -40,6 +40,17 @@ export default function HomePage() {
     if (success) toast.success("Tarefa removida!");
     else toast.error("Erro ao remover");
     return success;
+  };
+
+  const handleCancel = async () => {
+    if (!drawnTask) return;
+    const success = await undrawTask(drawnTask);
+    if (success) {
+      setDrawnTask(null);
+      toast("Tudo bem! Sorteie novamente quando quiser.", { icon: "↩️" });
+    } else {
+      toast.error("Erro ao cancelar sorteio");
+    }
   };
 
   const handleDraw = async () => {
@@ -117,7 +128,7 @@ export default function HomePage() {
       </main>
 
       {/* Drawn modal */}
-      <DrawnModal task={drawnTask} onClose={() => setDrawnTask(null)} />
+      <DrawnModal task={drawnTask} onClose={() => setDrawnTask(null)} onCancel={handleCancel} />
     </div>
   );
 }

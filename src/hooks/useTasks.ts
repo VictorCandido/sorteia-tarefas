@@ -86,6 +86,19 @@ export function useTasks() {
     }
   };
 
+  const undrawTask = async (task: Task): Promise<boolean> => {
+    try {
+      const res = await fetch(`/api/tasks/${task.id}`, { method: "PATCH" });
+      if (!res.ok) return false;
+      const reverted = await res.json();
+      setDrawnTasks((prev) => prev.filter((t) => t.id !== task.id));
+      setPendingTasks((prev) => [reverted, ...prev]);
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
   return {
     pendingTasks,
     drawnTasks,
@@ -94,6 +107,7 @@ export function useTasks() {
     updateTask,
     deleteTask,
     drawTask,
+    undrawTask,
     refetch: fetchTasks,
   };
 }
