@@ -115,7 +115,7 @@ export default function TaskCard({
             </div>
           ) : (
             <>
-              <p className={`text-sm font-medium truncate ${variant === "drawn" ? "text-surface-300" : "text-surface-100"}`}>
+              <p className={`text-sm font-medium break-words ${variant === "drawn" ? "text-surface-300" : "text-surface-100"}`}>
                 {title}
               </p>
               <div className="flex items-center gap-1.5 mt-1">
